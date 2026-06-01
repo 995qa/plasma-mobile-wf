@@ -1,0 +1,27 @@
+name: Build Package
+
+on:
+  workflow_dispatch:
+  push:
+
+env:
+  PACKAGES_DIR : /home/runner/pkg
+  KERNEL_DIR : ${{ github.workspace }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build
+        run: |
+             mkdir -p ${{ env.PACKAGES_DIR }}
+             docker run --rm -v $PACKAGES_DIR:/buildd -v ${{env.KERNEL_DIR}}:/buildd/sources quay.io/droidian/build-essential:next-amd64 bash -c "cd /buildd/sources && RELENG_HOST_ARCH="arm64" releng-build-package"
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: kernel
+          path: /home/runner/pkg
