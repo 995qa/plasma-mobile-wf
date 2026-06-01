@@ -21,10 +21,13 @@ jobs:
              docker run --rm \
               -v "$PACKAGES_DIR:/buildd" \
               -v "$KERNEL_DIR:/buildd/sources" \
-              quay.io/droidian/build-essential:next-arm64 \
+              quay.io/droidian/build-essential:next-amd64 \
               bash -c '
                 set -e
                 cd /buildd/sources
+
+                apt-get update -y
+                DEBIAN_FRONTEND=noninteractive apt-get install -y crossbuild-essential-arm64
 
                 git config --global --add safe.directory /buildd/sources
                 git fetch origin --tags
