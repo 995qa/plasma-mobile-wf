@@ -21,7 +21,7 @@ jobs:
              docker run --rm \
               -v "$PACKAGES_DIR:/buildd" \
               -v "$KERNEL_DIR:/buildd/sources" \
-              quay.io/droidian/build-essential:next-amd64 \
+              quay.io/droidian/build-essential:next-arm64 \
               bash -c '
                 set -e
                 cd /buildd/sources
