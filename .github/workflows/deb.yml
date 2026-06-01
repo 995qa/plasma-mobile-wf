@@ -18,7 +18,7 @@ jobs:
       - name: Build
         run: |
              mkdir -p ${{ env.PACKAGES_DIR }}
-             docker run --rm -v $PACKAGES_DIR:/buildd -v ${{env.KERNEL_DIR}}:/buildd/sources quay.io/droidian/build-essential:next-amd64 bash -c "cd /buildd/sources && RELENG_HOST_ARCH="arm64" releng-build-package"
+             docker run --rm -v $PACKAGES_DIR:/buildd -v ${{env.KERNEL_DIR}}:/buildd/sources quay.io/droidian/build-essential:next-amd64 bash -c "cd /buildd/sources && git fetch --all --tags && RELENG_HOST_ARCH=arm64 releng-build-package"
 
       - name: Upload Artifacts
         uses: actions/upload-artifact@v4
