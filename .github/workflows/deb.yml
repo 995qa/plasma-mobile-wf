@@ -26,6 +26,7 @@ jobs:
                 set -e
                 cd /buildd/sources
 
+                git config --global --add safe.directory /buildd/sources
                 git fetch origin --tags
                 git fetch --all --tags || true
 
