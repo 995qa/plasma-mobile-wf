@@ -1,4 +1,4 @@
-plasma-mobile (v6.5.2-1) unstable; urgency=medium
+plasma-mobile (6.5.2-1) unstable; urgency=medium
 
   [ Aurélien COUDERC ]
   * Migrate to debian/watch version 5 syntax.
